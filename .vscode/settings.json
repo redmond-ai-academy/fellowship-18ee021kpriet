@@ -1,0 +1,8 @@
+{
+  // Safe defaults for this repo. Workspace settings override your user settings here.
+  // Never auto-accept the agent's pending edits: you review every change yourself.
+  "antigravity.autoAcceptOnChat": false,
+  // Show the agent's changes as inline diffs, so you can accept or reject each hunk.
+  "antigravity.enableInlineDiff": true,
+  "python.testing.pytestEnabled": true
+}

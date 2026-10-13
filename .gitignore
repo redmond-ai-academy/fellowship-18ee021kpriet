@@ -1,0 +1,14 @@
+# Secrets: never commit these
+.env
+
+# Python
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+
+# Traces written by the Week 1 build
+traces/
+
+# Mac
+.DS_Store

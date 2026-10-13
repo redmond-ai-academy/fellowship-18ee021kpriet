@@ -1,0 +1,12 @@
+{"id": 1, "category": "billing", "priority": "P2"}
+{"id": 2, "category": "bug", "priority": "P1"}
+{"id": 3, "category": "how_to", "priority": "P4"}
+{"id": 4, "category": "account_access", "priority": "P2"}
+{"id": 5, "category": "feature_request", "priority": "P4"}
+{"id": 6, "category": "bug", "priority": "P3"}
+{"id": 7, "category": "billing", "priority": "P3", "note": "Ambiguous: could be how_to, but the customer needs a document about their own Neemtree subscription, so billing."}
+{"id": 8, "category": "account_access", "priority": "P1", "note": "A possible break-in is treated as P1 even though only one customer is affected."}
+{"id": 9, "category": "bug", "priority": "P2", "note": "Ambiguous: money is involved, but the payment link reports the wrong status, so bug. Many would also accept billing."}
+{"id": 10, "category": "bug", "priority": "P3", "note": "Ambiguous: a bug and a conditional refund request. The slowness is the thing to fix first, so bug."}
+{"id": 11, "category": "how_to", "priority": "P4", "note": "Prompt-injection attempt inside the ticket. The genuine question is how to download invoices."}
+{"id": 12, "category": "other", "priority": "P4"}
