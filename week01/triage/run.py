@@ -10,6 +10,7 @@ Examples (from the repo root; on Windows use `python`, on Mac `python3` also wor
 import argparse
 import json
 import sys
+import time
 from collections import Counter
 from pathlib import Path
 
@@ -51,13 +52,27 @@ def shorten(text: str, limit: int) -> str:
 def triage_all(tickets: list[dict], client: ModelClient, args: argparse.Namespace) -> list[tuple[dict, int, Triage | str]]:
     """Run every ticket `repeat` times. A failure becomes an error string, so one bad ticket does not stop the run."""
     outcomes = []
+    total_calls = len(tickets) * args.repeat
+    call_idx = 0
     for ticket in tickets:
         for run in range(1, args.repeat + 1):
-            try:
-                outcome = triage(ticket["text"], client, temperature=args.temperature)
-            except (TriageError, ModelCallError) as exc:
-                outcome = str(exc)
+            call_idx += 1
+            for attempt in range(2):
+                try:
+                    outcome = triage(ticket["text"], client, temperature=args.temperature)
+                    break
+                except ModelCallError as exc:
+                    if "429" in str(exc) and attempt == 0:
+                        time.sleep(35)
+                        continue
+                    outcome = str(exc)
+                    break
+                except TriageError as exc:
+                    outcome = str(exc)
+                    break
             outcomes.append((ticket, run, outcome))
+            if not args.fake and call_idx < total_calls:
+                time.sleep(12)
     return outcomes
 
 
